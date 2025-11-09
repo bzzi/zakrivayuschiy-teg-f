@@ -9,8 +9,240 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
+html,
+body {
+  min-height: 100%;
+}
 
 .page {
+  position: relative;
   min-inline-size: 320px;
+  max-inline-size: 700px;
   min-block-size: 100dvb;
+  font-family: var(--font-main), sans-serif;
+  font-weight: var(--font-weight-text);
+  font-weight: var(--font-weight-text);
+  font-size: 18px;
+  color: var(--mainColor, #000);
+  background-image: var(--grid-h), var(--grid-v), var(--shade);
+  background-attachment: fixed;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: center;
+  margin-inline: auto;
+  padding-block: 100px;
+}
+.page:has(.memory-dialog[open]) {
+  overflow: hidden;
+}
+.container {
+  width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 24px);
+}
+.section {
+  inline-size: var(--content-width);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border: 2px solid var(--mainColor);
+  background-color: var(--mainBgColor);
+}
+.header {
+  font-family: var(--font-accent);
+  margin-block-end: 100px;
+  height: 327px;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.header__title {
+  font-style: normal;
+  line-height: normal;
+  text-transform: uppercase;
+  font-size: var(--logo-size);
+  /*font-size: clamp(0.778rem, -0.032rem + 4.554vi, 3.611rem);*/
+}
+.header__subtitle {
+  font-size: clamp(14px, 1.43vw + 2.47px, 23px);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.main {
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+.section__title {
+  color: var(--mainColor);
+  font-family: var(--font-main);
+  font-weight: var(--font-weight-title);
+  font-size: 18px;
+  font-style: normal;
+  line-height: normal;
+  padding-block: 4px;
+  padding-inline: 10px;
+  border-block-end: 2px solid var(--mainColor);
+}
+.section__img-container {
+  position: relative;
+}
+
+.section__watermark {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-family: var(--font-accent);
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--watermark-stroke-color);
+  opacity: 0.5;
+  mix-blend-mode: hard-light;
+  text-shadow: 1px 0 var(--watermark-stroke-color),
+    -1px 0 var(--watermark-stroke-color), 0 1px var(--watermark-stroke-color),
+    0 -1px var(--watermark-stroke-color);
+  pointer-events: none;
+  user-select: none;
+}
+@supports (-webkit-text-stroke: 1px var(--watermark-stroke-color)) {
+  .section__watermark {
+    color: transparent;
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--watermark-stroke-color);
+  }
+}
+.section__img {
+  display: block;
+  inline-size: 100%;
+}
+.section__description {
+  padding: clamp(27px, 4vw + 12px, 40px);
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+  border-block-start: 2px solid var(--mainColor);
+}
+.section__description p {
+  line-height: 21px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 410;
+}
+.section__actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.card__icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.card__like-button {
+  position: relative;
+  width: 130px;
+  height: 38px;
+  padding: 9px 17px;
+  z-index: 0;
+}
+.card__like-button,
+.save-button,
+.dialog-button__text {
+  border: 2px solid var(--mainColor);
+  font-family: var(--font-accent);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 90%;
+  background-color: var(--mainBgColor);
+  color: var(--mainColor);
+  overflow: hidden;
+}
+.card__like-button::before,
+.save-button::before,
+.dialog-button__text::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-color: var(--mainColor);
+  transform: scaleX(0) scaleY(0.8); /* В фигме именно так воспроизводится  анимация, не просто слева направо, но чуть сверху */
+  transform-origin: left top;
+  transition: transform 0.5s ease;
+}
+
+.section__actions:hover .card__like-button::before,
+.save-button:hover::before,
+.dialog-button__text:hover::before {
+  transform: scaleX(1) scaleY(1);
+}
+
+.section__actions:hover .card__like-button,
+.save-button:hover .save-button__text,
+.save-button:hover .save-button__icon,
+.dialog-button__text:hover .button__text {
+  color: var(--mainBgColor);
+  fill: var(--mainBgColor);
+}
+
+.button__text,
+.save-button__text,
+.save-button__icon,
+.dialog-button__text {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.dialog_container {
+  position: absolute;
+  display: grid;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+}
+.save-button {
+  position: relative;
+  display: flex;
+  height: 84px;
+  padding: 15px 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  inline-size: clamp(306px, calc(0.0892 * 100vw + offset), 335px);
+}
+.save-button__icon {
+  width: 39px;
+}
+.memory-dialog[open] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+}
+.memory-dialog[open]::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+.dialog-button__text {
+  display: flex;
+  height: 38px;
+  padding: 9px 17px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  grid-column: 1 / -1;
+}
+@media (min-width: 768px) {
+  .header {
+    height: 368px;
+  }
 }
