@@ -53,7 +53,7 @@ body {
 .header {
   font-family: var(--font-accent);
   margin-block-end: 100px;
-  height: 327px;
+  height: 368px;
   gap: 20px;
   align-items: center;
   text-align: center;
@@ -166,6 +166,15 @@ body {
   color: var(--mainColor);
   overflow: hidden;
 }
+.save-button__text {
+  color: var(--mainColor);
+  font-family: var(--font-accent);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+  text-transform: uppercase;
+}
 .card__like-button::before,
 .save-button::before,
 .dialog-button__text::before {
@@ -227,6 +236,9 @@ body {
   grid-template-columns: auto 1fr;
   gap: 16px;
   align-items: center;
+  padding-block: 30px;
+  padding-inline: 40px;
+  max-inline-size: 353px;
 }
 .memory-dialog[open]::backdrop {
   background: rgba(0, 0, 0, 0.4);
@@ -241,8 +253,32 @@ body {
   align-self: stretch;
   grid-column: 1 / -1;
 }
-@media (min-width: 768px) {
+.img-dramatic {
+  filter: contrast(150%) brightness(80%) grayscale(40%);
+}
+.img-warm {
+  filter: sepia(40%) brightness(110%) saturate(120%);
+}
+.img-cold {
+  filter: hue-rotate(180deg) brightness(90%) saturate(80%);
+}
+.img-vintage {
+  filter: sepia(80%) contrast(90%) brightness(95%);
+}
+.img-dreamy {
+  filter: blur(2px) brightness(120%) saturate(140%);
+}
+.img-darken {
+  filter: brightness(60%) contrast(120%);
+}
+.img-intense {
+  filter: grayscale(20%) contrast(180%) saturate(150%) hue-rotate(-15deg);
+}
+@media (width <= 375px) {
   .header {
-    height: 368px;
+    height: 327px;
+  }
+  .memory-dialog[open] {
+    inline-size: 341px;
   }
 }
