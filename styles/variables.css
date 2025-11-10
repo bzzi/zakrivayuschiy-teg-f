@@ -23,4 +23,12 @@
   --watermark-stroke-color: #fff;
   --contour-color: #000;
   --animation-fill-color: #ff0000;
+
+  --btn-border: var(--mainColor);
+  --btn-bg: var(--mainBgColor);
+  --btn-fg-on-fill: #fff;
+  --btn-font: 400 14px/1 var(--font-accent);
+  --btn-gap: 10px;
+  --btn-px: 17px;
+  --btn-py: 9px;
 }

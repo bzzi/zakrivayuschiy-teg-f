@@ -1,13 +1,4 @@
 :root {
-  --contour-color: #000;
-  --animation-fill-color: #ff0044;
-  --btn-border: var(--mainColor);
-  --btn-bg: var(--mainBgColor);
-  --btn-fg-on-fill: #fff;
-  --btn-font: 400 14px/1 var(--font-accent);
-  --btn-gap: 10px;
-  --btn-px: 17px;
-  --btn-py: 9px;
 }
 
 html,
@@ -415,36 +406,6 @@ body {
 
 .like-icon.is-liked .sparks {
   animation: sparks-flash 0.3s ease-in 0.3s 1 both;
-}
-
-@keyframes heart-pop {
-  0% {
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(1.2);
-  }
-  60% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes sparks-flash {
-  0% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  30% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
 }
 
 @media (width <= 375.98px) {
