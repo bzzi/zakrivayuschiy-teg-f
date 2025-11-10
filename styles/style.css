@@ -1,6 +1,3 @@
-:root {
-}
-
 html,
 body {
   min-height: 100%;
@@ -211,11 +208,6 @@ body {
   mix-blend-mode: difference;
   color: var(--btn-fg-on-fill);
   transition: color 0.3s ease;
-}
-.button__text,
-.save-button__text,
-.floppy__icon,
-.dialog-description__text {
   font-family: var(--font-accent);
   font-size: 14px;
   font-style: normal;
@@ -414,6 +406,7 @@ body {
   }
   .memory-dialog[open] {
     inline-size: 341px;
+    padding-inline: 40px;
   }
   .save-button {
     flex-direction: column;
@@ -426,8 +419,5 @@ body {
   }
   .save-button__text {
     padding-top: 0;
-  }
-  .memory-dialog[open] {
-    padding-inline: 40px;
   }
 }
