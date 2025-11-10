@@ -1,6 +1,13 @@
 :root {
   --contour-color: #000;
   --animation-fill-color: #ff0044;
+  --btn-border: var(--mainColor);
+  --btn-bg: var(--mainBgColor);
+  --btn-fg-on-fill: #fff;
+  --btn-font: 400 14px/1 var(--font-accent);
+  --btn-gap: 10px;
+  --btn-px: 17px;
+  --btn-py: 9px;
 }
 
 html,
@@ -36,7 +43,7 @@ body {
   padding-inline: clamp(16px, 4vw, 24px);
 }
 
-.section {
+.article {
   inline-size: var(--content-width);
   display: flex;
   flex-direction: column;
@@ -49,10 +56,10 @@ body {
 .header {
   font-family: var(--font-accent);
   margin-block-end: 100px;
-  height: 368px;
   gap: 20px;
   align-items: center;
   text-align: center;
+  padding: 130px 122px;
 }
 
 .header__title {
@@ -154,28 +161,15 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 9px 17px;
-  border: 2px solid var(--mainColor);
-  font-family: var(--font-accent);
-  font-size: 14px;
-  font-weight: 400;
+  gap: var(--btn-gap);
+  padding: var(--btn-py) var(--btn-px);
+  border: 2px solid var(--btn-border);
+  background-color: var(--btn-bg);
+  font: var(--btn-font);
+  color: var(--btn-fg-on-fill);
   line-height: 1;
-  background-color: var(--mainBgColor);
-  color: #fff;
   overflow: hidden;
   transition: box-shadow 0.3s ease;
-}
-.card__like-button,
-.save-button,
-.dialog-button__text,
-.dialog-description__text {
-  font-family: var(--font-accent);
-}
-.card__like-button {
-  width: 130px;
-  height: 38px;
-  z-index: 0;
 }
 
 .card__like-button:focus,
@@ -187,23 +181,7 @@ body {
 .card__like-button:focus-visible,
 .save-button:focus-visible,
 .dialog-button__text:focus-visible {
-  box-shadow: 2px 2px 0 0 var(--mainColor);
-}
-
-.button__text,
-.save-button__text,
-.floppy__icon {
-  position: relative;
-  z-index: 1;
-  mix-blend-mode: difference;
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
-.save-button .button__text {
-  line-height: normal;
-  inline-size: 266px;
-  flex-shrink: 0;
+  box-shadow: 2px 2px 0 0 var(--btn-border);
 }
 
 .card__like-button::before,
@@ -212,7 +190,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: var(--mainColor);
+  background-color: var(--btn-border);
   transform: scaleX(0) scaleY(0.8);
   transform-origin: left top;
   transition: transform 0.5s ease-in-out;
@@ -229,8 +207,58 @@ body {
   .save-button:hover,
   .dialog-button__text:hover {
     color: #fff;
-    background-color: var(--mainColor);
+    background-color: var(--btn-border);
   }
+}
+
+.button__text,
+.save-button__text,
+.floppy__icon,
+.dialog-description__text {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: difference;
+  color: var(--btn-fg-on-fill);
+  transition: color 0.3s ease;
+}
+.button__text,
+.save-button__text,
+.floppy__icon,
+.dialog-description__text {
+  font-family: var(--font-accent);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+.button__text,
+.save-button__text,
+.floppy__icon {
+  line-height: 90%;
+}
+.dialog-description__text {
+  line-height: 150%; /* 21px */
+}
+.card__like-button {
+  inline-size: 130px;
+  block-size: 38px;
+  z-index: 0;
+}
+
+.save-button {
+  block-size: 55px;
+  padding: 15px 20px;
+  gap: 8px;
+  inline-size: clamp(306px, calc(7.63vw + 281.6px), 335px);
+}
+
+.save-button .button__text {
+  inline-size: 266px;
+  flex-shrink: 0;
+}
+
+.dialog-button__text {
+  display: flex;
+  block-size: 38px;
 }
 
 .card__icon-button {
@@ -259,19 +287,12 @@ body {
   align-items: center;
 }
 
-.save-button {
-  height: 55px;
-  padding: 15px 20px;
-  flex-direction: row;
-  gap: 8px;
-  inline-size: clamp(306px, calc(7.63vw + 281.6px), 335px);
-}
-
 .floppy__icon {
   width: 21px;
   height: 21px;
   flex-shrink: 0;
 }
+
 .memory-dialog .floppy__icon {
   width: 39px;
   height: 39px;
@@ -280,42 +301,43 @@ body {
 .memory-dialog[open] {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
   padding-block: 30px;
-  padding-inline: 40px;
+  padding-inline: 30px;
   max-inline-size: 353px;
+  justify-items: center;
 }
 
 .memory-dialog[open]::backdrop {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.75);
 }
-
-.dialog-button__text {
-  display: flex;
-  height: 38px;
+.memory-dialog[open] .dialog-button__text {
   grid-column: 1 / -1;
+  justify-self: stretch;
+  inline-size: 100%;
+  box-sizing: border-box;
+  display: block;
 }
-
-.img-dramatic {
+.filter-dramatic {
   filter: contrast(150%) brightness(80%) grayscale(40%);
 }
-.img-warm {
+.filter-warm {
   filter: sepia(70%) brightness(110%) saturate(120%);
 }
-.img-cold {
+.filter-cold {
   filter: hue-rotate(180deg) brightness(90%) saturate(80%);
 }
-.img-vintage {
+.filter-vintage {
   filter: sepia(80%) contrast(90%) brightness(95%);
 }
-.img-dreamy {
+.filter-dreamy {
   filter: blur(5px) brightness(120%) saturate(140%);
 }
-.img-darken {
+.filter-darken {
   filter: brightness(60%) contrast(120%);
 }
-.img-intense {
+.filter-intense {
   filter: grayscale(80%) contrast(180%) saturate(150%) hue-rotate(-15deg);
 }
 
@@ -350,9 +372,11 @@ body {
 .like-icon .contour {
   transition: fill 0.1s linear;
 }
+
 .like-icon .core {
   transition: fill 0.3s linear 0.03s;
 }
+
 .like-icon .main-body {
   transition: fill 0.3s linear;
 }
@@ -361,6 +385,7 @@ body {
   fill: var(--contour-color);
   transition-delay: 0s;
 }
+
 .like-icon:hover .main-body {
   fill: var(--contour-color);
   transition-delay: 0.05s;
@@ -392,16 +417,46 @@ body {
   animation: sparks-flash 0.3s ease-in 0.3s 1 both;
 }
 
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes sparks-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
 @media (width <= 375.98px) {
   .header {
-    height: 327px;
+    padding: 122px 0;
   }
   .memory-dialog[open] {
     inline-size: 341px;
   }
   .save-button {
     flex-direction: column;
-    height: 84px;
+    block-size: 84px;
   }
   .floppy__icon {
     width: 28px;
@@ -410,5 +465,8 @@ body {
   }
   .save-button__text {
     padding-top: 0;
+  }
+  .memory-dialog[open] {
+    padding-inline: 40px;
   }
 }
