@@ -142,9 +142,7 @@ body {
   margin-left: auto;
 }
 
-.card__like-button,
-.save-button,
-.dialog-button__text {
+:where(.card__like-button, .save-button, .dialog-button__text) {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -160,40 +158,30 @@ body {
   transition: box-shadow 0.3s ease;
 }
 
-.card__like-button:focus,
-.save-button:focus,
-.dialog-button__text:focus {
+:where(.card__like-button, .save-button, .dialog-button__text):focus {
   outline: none;
 }
 
-.card__like-button:focus-visible,
-.save-button:focus-visible,
-.dialog-button__text:focus-visible {
+:where(.card__like-button, .save-button, .dialog-button__text):focus-visible {
   box-shadow: 2px 2px 0 0 var(--btn-border);
 }
 
-.card__like-button::before,
-.save-button::before,
-.dialog-button__text::before {
+:where(.card__like-button, .save-button, .dialog-button__text)::before {
   content: "";
   position: absolute;
   inset: 0;
   background-color: var(--btn-border);
-  transform: scaleX(0) scaleY(0.8); /* так отображается анимация в фигме, делал точно по ней */
-  transform-origin: left top;
+  transform: scaleX(0);
+  transform-origin: left;
   transition: transform 0.5s ease-in-out;
 }
 
-.card__like-button:hover::before,
-.save-button:hover::before,
-.dialog-button__text:hover::before {
+:where(.card__like-button, .save-button, .dialog-button__text):hover::before {
   transform: scaleX(1) scaleY(1);
 }
 
 @supports not (mix-blend-mode: difference) {
-  .card__like-button:hover,
-  .save-button:hover,
-  .dialog-button__text:hover {
+  :where(.card__like-button, .save-button, .dialog-button__text):hover {
     color: #fff;
     background-color: var(--btn-border);
   }
@@ -213,14 +201,18 @@ body {
   font-style: normal;
   font-variation-settings: "wght" var(--font-weight-text);
 }
+
 .button__text,
 .save-button__text,
 .floppy__icon {
   line-height: 90%;
 }
+
 .dialog-description__text {
-  line-height: 150%; /* 21px */
+  line-height: 150%;
+  text-transform: uppercase;
 }
+
 .card__like-button {
   inline-size: 130px;
   block-size: 38px;
@@ -295,6 +287,7 @@ body {
 .memory-dialog[open]::backdrop {
   background: rgba(0, 0, 0, 0.75);
 }
+
 .memory-dialog[open] .dialog-button__text {
   grid-column: 1 / -1;
   justify-self: stretch;
@@ -302,6 +295,7 @@ body {
   box-sizing: border-box;
   display: block;
 }
+
 .filter-dramatic {
   filter: contrast(150%) brightness(80%) grayscale(40%);
 }
@@ -325,15 +319,11 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card__like-button,
-  .save-button,
-  .dialog-button__text,
+  :where(.card__like-button, .save-button, .dialog-button__text),
   .card__icon-button {
     transition: none;
   }
-  .card__like-button::before,
-  .save-button::before,
-  .dialog-button__text::before {
+  :where(.card__like-button, .save-button, .dialog-button__text)::before {
     transition: none;
   }
 }
