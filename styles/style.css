@@ -142,7 +142,7 @@ body {
   margin-left: auto;
 }
 
-:where(.card__like-button, .save-button, .dialog-button__text) {
+.button {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -158,15 +158,15 @@ body {
   transition: box-shadow 0.3s ease;
 }
 
-:where(.card__like-button, .save-button, .dialog-button__text):focus {
+.button:focus {
   outline: none;
 }
 
-:where(.card__like-button, .save-button, .dialog-button__text):focus-visible {
+.button:focus-visible {
   box-shadow: 2px 2px 0 0 var(--btn-border);
 }
 
-:where(.card__like-button, .save-button, .dialog-button__text)::before {
+.button::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -176,12 +176,12 @@ body {
   transition: transform 0.5s ease-in-out;
 }
 
-:where(.card__like-button, .save-button, .dialog-button__text):hover::before {
+.button:hover::before {
   transform: scaleX(1) scaleY(1);
 }
 
 @supports not (mix-blend-mode: difference) {
-  :where(.card__like-button, .save-button, .dialog-button__text):hover {
+  .button:hover {
     color: #fff;
     background-color: var(--btn-border);
   }
@@ -212,7 +212,6 @@ body {
   line-height: 150%;
   text-transform: uppercase;
 }
-
 .card__like-button {
   inline-size: 130px;
   block-size: 38px;
@@ -296,6 +295,7 @@ body {
   display: block;
 }
 
+/* === ФИЛЬТРЫ === */
 .filter-dramatic {
   filter: contrast(150%) brightness(80%) grayscale(40%);
 }
@@ -319,11 +319,11 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where(.card__like-button, .save-button, .dialog-button__text),
+  .button,
   .card__icon-button {
     transition: none;
   }
-  :where(.card__like-button, .save-button, .dialog-button__text)::before {
+  .button::before {
     transition: none;
   }
 }
@@ -390,6 +390,7 @@ body {
   animation: sparks-flash 0.3s ease-in 0.3s 1 both;
 }
 
+/* === МОБИЛЬНЫЕ ПРАВКИ === */
 @media (width <= 375.98px) {
   .header {
     padding: 122px 0;

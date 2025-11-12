@@ -15,6 +15,7 @@
     #d3d3d3 0 2px,
     transparent 2px 4px
   );
+  --font-size-btn: 14px;
   --shade: linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
   --mainBgColor: #fff;
   --content-width: clamp(100%, 90vw, 700px);
